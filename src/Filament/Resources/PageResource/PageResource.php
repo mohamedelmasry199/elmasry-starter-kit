@@ -135,7 +135,7 @@ class PageResource extends Resource
                         'landing' => 'Landing Page',
                     ]),
             ])
-            ->actions([
+            ->recordActions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),

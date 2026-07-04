@@ -16,7 +16,7 @@ class InstallStarterKitCommand extends Command
 
     public function handle(): int
     {
-        $this->info('🚀 Installing Elmasry Starter Kit...');
+        $this->info('Installing Elmasry Starter Kit...');
 
         // Publish config
         $this->call('vendor:publish', [
@@ -67,7 +67,7 @@ class InstallStarterKitCommand extends Command
         // Clear cache
         $this->call('optimize:clear');
 
-        $this->info('✅ Elmasry Starter Kit installed successfully!');
+        $this->info('Elmasry Starter Kit installed successfully!');
         $this->warn('➜ Create an admin user: php artisan make:filament-user');
         $this->warn('➜ Or login to: ' . config('starter-kit.filament.path', 'admin'));
 
@@ -142,11 +142,11 @@ class InstallStarterKitCommand extends Command
     {
         $this->info('Installing Filament...');
 
-        // Publish Filament config
+        // Install Filament panels (this creates AdminPanelProvider and sets up assets)
         Artisan::call('filament:install', ['--panels' => true]);
         $this->line(Artisan::output());
 
-        // Publish the admin panel provider stub
+        // Publish the admin panel provider stub (overwrites if --force)
         $panelPath = app_path('Providers/Filament/AdminPanelProvider.php');
         if (!File::exists($panelPath) || $this->option('force')) {
             File::ensureDirectoryExists(app_path('Providers/Filament'));
@@ -154,10 +154,6 @@ class InstallStarterKitCommand extends Command
             File::put($panelPath, $stub);
             $this->info('AdminPanelProvider created.');
         }
-
-        // Create Filament theme
-        Artisan::call('filament:install', ['--type' => 'theme']);
-        $this->line(Artisan::output());
     }
 
     protected function installDemoData(): void

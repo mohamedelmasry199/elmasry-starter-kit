@@ -128,7 +128,7 @@ class SettingsResource extends Resource
                         'boolean' => 'Boolean',
                     ]),
             ])
-            ->actions([
+            ->recordActions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
                 Tables\Actions\Action::make('clear_cache')

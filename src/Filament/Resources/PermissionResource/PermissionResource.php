@@ -64,7 +64,7 @@ class PermissionResource extends Resource
                         'api' => 'API',
                     ]),
             ])
-            ->actions([
+            ->recordActions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

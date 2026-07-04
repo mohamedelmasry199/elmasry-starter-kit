@@ -81,7 +81,7 @@ class TranslationResource extends Resource
                 Tables\Filters\SelectFilter::make('group')
                     ->options(fn () => Translation::pluck('group')->unique()->filter()->values()->mapWithKeys(fn ($group) => [$group => $group])->toArray()),
             ])
-            ->actions([
+            ->recordActions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])
